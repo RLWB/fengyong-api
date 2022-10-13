@@ -1,0 +1,59 @@
+<style>
+    #main {
+        width: 400px;
+        height: 100px;
+        position: relative;
+    }
+
+    #canvas,
+    #ggk {
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 26px;
+    }
+
+    #ggk {
+        position: absolute;
+        top: 35px;
+        left: 150px;
+    }
+</style>
+
+<body>
+    <div id="main">
+        <div id="ggk">谢谢惠顾</div>
+        <canvas id="canvas" width="400" height="100"></canvas>
+    </div>
+    <script>
+        var dto = document.querySelector("#canvas")
+        var mainDom = document.getElementById("main")
+        var ggk = document.getElementById("ggk")
+        var ctx = dto.getContext("2d")
+        ctx.fillStyle = "#333"
+        ctx.fillRect(0, 0, 400, 100)
+        ctx.fillStyle = "#FFF"
+        ctx.font = "28px Arial";
+        ctx.fillText("刮刮卡", 150, 50);
+        isDraw = false
+        dto.onmousedown = function () {
+            console.log(isDraw)
+            isDraw = true
+        }
+        // 鼠标移动的绘制圆
+        dto.onmousemove = function (e) {
+            console.log(isDraw)
+            if (isDraw) {
+                var x = e.pageX - mainDom.offsetLeft
+                var y = e.pageY - mainDom.offsetTop
+                ctx.globalCompositeOperation = "destination-out"
+                ctx.arc(x, y, 20, 0, 2 * Math.PI)
+                ctx.fill()
+            }
+
+        }
+        dto.onmouseup = function () {
+            isDraw = false
+        }
+    </script>
+</body>

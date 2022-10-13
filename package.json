@@ -11,9 +11,5 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.1"
-  },
-  "devDependencies": {
-    "element-theme-chalk": "^2.15.10",
-    "element-themex": "^1.0.3"
   }
 }
